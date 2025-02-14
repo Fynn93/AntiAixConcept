@@ -4,26 +4,24 @@ project(AntiAix)
 set(CMAKE_CXX_STANDARD 26)
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
+set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};C:/vcpkg/installed/x64-windows-static/debug;C:/vcpkg/installed/x64-windows-static")
+
 include_directories(.)
 
-add_executable(AntiAix
-        src/main.cpp
-        src/ProcessUtils.cpp
-        src/ProcessUtils.hpp
-        external/minhook/buffer.c
-        external/minhook/buffer.h
-        external/minhook/hook.c
-        external/minhook/trampoline.c
-        external/minhook/trampoline.h
-        external/minhook/hde/hde32.c
-        external/minhook/hde/hde32.h
-        external/minhook/hde/hde64.c
-        external/minhook/hde/hde64.h
-        external/minhook/hde/pstdint.h
-        external/minhook/hde/table32.h
-        external/minhook/hde/table64.h
+find_package(httplib CONFIG REQUIRED)
+
+file(GLOB_RECURSE SRC_FILES
+        CONFIGURE_DEPENDS
+        src/*.cpp
+        src/*.c
+        src/*.hpp
+        src/*.h,
+        external/*.c
+        external/*.h
 )
 
-target_link_libraries(AntiAix
-        comctl32
+add_executable(AntiAix
+        ${SRC_FILES}
 )
+
+target_link_libraries(AntiAix PRIVATE httplib::httplib ntdll.dll)
