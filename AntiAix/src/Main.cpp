@@ -45,12 +45,10 @@ int main()
     } else {
         // We got the client service URL, so we can disable the internet filter
         std::cout << "Client service url: " << Globals::g_ClientServiceUrl << std::endl;
-        // TODO: Check result of SetFilterInternet
-        ApiWrapper::SetFilterInternet(false);
+        std::cout << ApiWrapper::SetFilterInternet(false) << std::endl;
     }
 
-    // TODO: Check result of SetSurveillanceAllowance
-    ApiWrapper::SetSurveillanceAllowance(false);
+    std::cout << ApiWrapper::SetSurveillanceAllowance(false) << std::endl;
     std::cout << "Disabled surveillance" << std::endl;
 
     std::cout << "Entering main loop..." << std::endl;

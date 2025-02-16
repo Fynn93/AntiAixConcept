@@ -4,7 +4,7 @@
 
 class ApiWrapper {
 public:
-    static void SetSurveillanceAllowance(bool allowSurveillance);
-    static void SetFilterInternet(bool doActivateFilter);
+    static std::string SetSurveillanceAllowance(bool allowSurveillance);
+    static std::string SetFilterInternet(bool doActivateFilter);
 };
 
