@@ -116,7 +116,8 @@ std::wstring ProcessUtils::GetClientServiceUrl()
         if (std::wstring cmdLine = GetProcessCommandLine(pe32.th32ProcessID); !cmdLine.empty()) {
             if (std::wstring firstArg = StringUtils::ExtractFirstArgument(cmdLine); !firstArg.empty()) {
                 if (!firstArg.ends_with(L"/")) {
-                    firstArg += L"/";
+                    // remove last character
+                    firstArg.pop_back();
                 }
                 return firstArg;
             }

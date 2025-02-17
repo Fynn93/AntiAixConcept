@@ -54,8 +54,9 @@ int main()
     std::cout << "Entering main loop..." << std::endl;
     // ReSharper disable once CppDFALoopConditionNotUpdated
     while (m_Running) {
-        // Check if the process is running and terminate it
-        ProcessUtils::TerminateProcessByName("LockDesktop.exe");
+        // Check if the process is running and terminate it (Only works if the process isn't running as admin)
+        // ProcessUtils::TerminateProcessByName("LockDesktop.exe");
+        ApiWrapper::GetSurveillanceState();
         Sleep(1000);
     }
     MH_Uninitialize();
