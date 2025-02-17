@@ -41,15 +41,15 @@ int main()
     Globals::g_ClientServiceUrl = StringUtils::WstringToString(ProcessUtils::GetClientServiceUrl());
     if (Globals::g_ClientServiceUrl.empty()) {
         std::cerr << "Failed to get client service URL" << std::endl;
-        std::cerr << "Will not be able to disable the screen view" << std::endl;
+        std::cerr << "Will not be able to disable surveillance and internet filter" << std::endl;
     } else {
-        // We got the client service URL, so we can disable the internet filter
+        // We got the client service URL, so we can disable the internet filter and surveillance
         std::cout << "Client service url: " << Globals::g_ClientServiceUrl << std::endl;
-        std::cout << ApiWrapper::SetFilterInternet(false) << std::endl;
-    }
 
-    std::cout << ApiWrapper::SetSurveillanceAllowance(false) << std::endl;
-    std::cout << "Disabled surveillance" << std::endl;
+        std::cout << ApiWrapper::SetFilterInternet(false) << std::endl;
+        std::cout << ApiWrapper::SetSurveillanceAllowance(false) << std::endl;
+        std::cout << "Disabled surveillance and internet filter" << std::endl;
+    }
 
     std::cout << "Entering main loop..." << std::endl;
     // ReSharper disable once CppDFALoopConditionNotUpdated
